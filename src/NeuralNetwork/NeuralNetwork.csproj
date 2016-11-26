@@ -7,8 +7,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{0955C4F3-2760-4B21-A67C-AB451B823B0E}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>Devvy.NeuralNetwork</RootNamespace>
-    <AssemblyName>Devvy.NeuralNetwork</AssemblyName>
+    <RootNamespace>BabySteps.NeuralNetwork</RootNamespace>
+    <AssemblyName>BabySteps.NeuralNetwork</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>

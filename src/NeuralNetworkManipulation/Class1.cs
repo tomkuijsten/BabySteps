@@ -1,11 +1,11 @@
-﻿using Devvy.NeuralNetwork.Neurons;
+﻿using BabySteps.NeuralNetwork.Neurons;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Devvy.NeuralNetwork.NetworkManipulation
+namespace BabySteps.NeuralNetwork.NetworkManipulation
 {
     public class SampleManipulation
     {
@@ -173,11 +173,12 @@ namespace Devvy.NeuralNetwork.NetworkManipulation
 
         public static PercentageVariationBiasModificationWeight Create(double minVariation, double maxVariation)
         {
-            var instance = new PercentageVariationBiasModificationWeight();
-            instance._randomizer = new Random();
-            instance._minVariationPercentage = minVariation;
-            instance._maxVariationPercentage = maxVariation;
-
+            var instance = new PercentageVariationBiasModificationWeight()
+            {
+                _randomizer = new Random(),
+                _minVariationPercentage = minVariation,
+                _maxVariationPercentage = maxVariation
+            };
             return instance;
         }
 

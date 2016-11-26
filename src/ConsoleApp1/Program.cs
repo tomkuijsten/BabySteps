@@ -1,13 +1,13 @@
-﻿using Devvy.NeuralNetwork.Neurons;
-using Devvy.NeuralNetwork.Synapses;
-using Devvy.NeuralNetwork;
+﻿using BabySteps.NeuralNetwork.Neurons;
+using BabySteps.NeuralNetwork.Synapses;
+using BabySteps.NeuralNetwork;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Devvy.NeuralNetwork.NetworkTypes;
+using BabySteps.NeuralNetwork.NetworkTypes;
 
 namespace ConsoleApp1
 {

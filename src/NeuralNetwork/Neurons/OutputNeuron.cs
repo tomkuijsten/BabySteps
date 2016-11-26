@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Devvy.NeuralNetwork.Neurons
+namespace BabySteps.NeuralNetwork.Neurons
 {
     public class OutputNeuron : CalculatableNeuron<HiddenNeuron, OutputNeuron>
     {

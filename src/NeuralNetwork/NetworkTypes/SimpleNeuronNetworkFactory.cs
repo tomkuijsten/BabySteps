@@ -1,12 +1,12 @@
-﻿using Devvy.NeuralNetwork.Neurons;
-using Devvy.NeuralNetwork.Synapses;
+﻿using BabySteps.NeuralNetwork.Neurons;
+using BabySteps.NeuralNetwork.Synapses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Devvy.NeuralNetwork.NetworkTypes
+namespace BabySteps.NeuralNetwork.NetworkTypes
 {
     public static class SimpleNeuronNetworkFactory
     {

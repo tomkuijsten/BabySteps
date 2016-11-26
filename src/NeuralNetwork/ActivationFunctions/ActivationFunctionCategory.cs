@@ -1,4 +1,4 @@
-﻿namespace Devvy.NeuralNetwork.ActivationFunctions
+﻿namespace BabySteps.NeuralNetwork.ActivationFunctions
 {
     public enum ActivationFunctionCategory
     {

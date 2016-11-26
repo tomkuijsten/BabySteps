@@ -1,4 +1,4 @@
-﻿namespace Devvy.NeuralNetwork
+﻿namespace BabySteps.NeuralNetwork
 {
     public interface ICleanable
     {

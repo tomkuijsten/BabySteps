@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Devvy.GeneticAlgorithm
+namespace BabySteps.GeneticAlgorithm
 {
     public class Class1
     {

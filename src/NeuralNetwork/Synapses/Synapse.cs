@@ -1,11 +1,11 @@
-﻿using Devvy.NeuralNetwork.Neurons;
+﻿using BabySteps.NeuralNetwork.Neurons;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Devvy.NeuralNetwork.Synapses
+namespace BabySteps.NeuralNetwork.Synapses
 {
     public class Synapse<TIn, TOut> where TIn : Neuron where TOut : Neuron
     {

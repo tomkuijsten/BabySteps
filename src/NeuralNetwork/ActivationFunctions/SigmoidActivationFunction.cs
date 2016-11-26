@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Devvy.NeuralNetwork.ActivationFunctions
+namespace BabySteps.NeuralNetwork.ActivationFunctions
 {
     internal class SigmoidActivationFunction : IActivationFunction
     {

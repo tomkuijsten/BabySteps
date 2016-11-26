@@ -1,10 +1,10 @@
-﻿using Devvy.NeuralNetwork.Neurons;
+﻿using BabySteps.NeuralNetwork.Neurons;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Devvy.NeuralNetwork
+namespace BabySteps.NeuralNetwork
 {
     public class SimpleNeuralNetwork : INeuralNetwork
     {
@@ -12,6 +12,19 @@ namespace Devvy.NeuralNetwork
         public HashSet<InputNeuron> Inputs { get; private set; }
         public HashSet<OutputNeuron> Output { get; private set; }
         public HashSet<HiddenNeuron> Hidden { get; private set; }
+
+        public IEnumerable<Bias> Biases
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
 
         public SimpleNeuralNetwork(IEnumerable<InputNeuron> inputs)
         {
