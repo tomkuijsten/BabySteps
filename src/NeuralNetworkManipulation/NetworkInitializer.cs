@@ -1,6 +1,8 @@
 ﻿using BabySteps.NeuralNetwork;
 using BabySteps.NeuralNetworkManipulation.ModificationConfiguration;
+using BabySteps.NeuralNetworkManipulation.ModificationConfiguration.ActivationFunctionModification;
 using BabySteps.NeuralNetworkManipulation.ModificationConfiguration.BiasModification;
+using BabySteps.NeuralNetworkManipulation.ModificationConfiguration.WeightModification;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +26,16 @@ namespace BabySteps.NeuralNetworkManipulation
                 .ConfigureBias(BiasModificationConfiguration.Create()
                     .ConfigureTarget(AllBiasModificationTarget.Create())
                     .ConfigureGradationFilter(AllBiasModificationGradationFilter.Create())
-                    .ConfigureWeight(StaticValueBiasModificationWeight.Create(_baseValue)));
+                    .ConfigureWeight(StaticValueBiasModificationWeight.Create(_baseValue)))
+                .ConfigureWeight(WeightModificationConfiguration.Create()
+                    .ConfigureTarget(AllWeightModificationTarget.Create())
+                    .ConfigureGradationFilter(AllWeightModificationGradationFilter.Create())
+                    .ConfigureModification(StaticValueWeightModification.Create(_baseValue)))
+                .ConfigureActivationFunction(ActivationFunctionModificationConfiguration.Create()
+                    .ConfigureTarget(AllActivationFunctionModificationTarget.Create())
+                    .ConfigureGradationFilter(AllActivationFunctionModificationGradationFilter.Create())
+                    .ConfigureManipulator(RandomActivationFunctionModificationManipulator.Create())
+                );
 
             var manipulator = new NetworkManipulator(manipulationConfig);
 

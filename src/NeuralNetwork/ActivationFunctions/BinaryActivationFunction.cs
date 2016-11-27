@@ -14,5 +14,10 @@ namespace BabySteps.NeuralNetwork.ActivationFunctions
         {
             return (calculatedInput >= 0.5) ? 1 : 0;
         }
+
+        public override string ToString()
+        {
+            return $"Binary function in category {Category}";
+        }
     }
 }

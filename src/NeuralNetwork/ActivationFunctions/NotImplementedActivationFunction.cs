@@ -14,5 +14,10 @@ namespace BabySteps.NeuralNetwork.ActivationFunctions
         {
             throw new NotImplementedException("Invalid activation function is used");
         }
+
+        public override string ToString()
+        {
+            return $"NotImplemented function in category {Category}";
+        }
     }
 }

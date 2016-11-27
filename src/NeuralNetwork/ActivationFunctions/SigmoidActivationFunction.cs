@@ -14,5 +14,10 @@ namespace BabySteps.NeuralNetwork.ActivationFunctions
         {
             return (1 / (1 + Math.Exp(-input)));
         }
+
+        public override string ToString()
+        {
+            return $"Sigmoid function in category {Category}";
+        }
     }
 }

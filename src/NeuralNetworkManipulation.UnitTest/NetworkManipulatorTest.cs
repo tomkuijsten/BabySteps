@@ -1,8 +1,4 @@
-using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using BabySteps.NeuralNetwork.NetworkManipulation;
-using BabySteps.NeuralNetworkManipulation.ModificationConfiguration;
-using BabySteps.NeuralNetworkManipulation.ModificationConfiguration.BiasModification;
 using BabySteps.NeuralNetworkManipulation;
 using BabySteps.NeuralNetwork.NetworkTypes;
 

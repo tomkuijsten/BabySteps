@@ -20,6 +20,30 @@ namespace BabySteps.NeuralNetworkManipulation
         public void Manipulate(INeuralNetwork network)
         {
             ManipulateBiases(network);
+            ManipulateWeights(network);
+            ManipulateActivationFunctions(network);
+        }
+
+        private void ManipulateActivationFunctions(INeuralNetwork network)
+        {
+            var calculatableNeuronTarget = _modConfig.ActivationFunctionModificationConfiguration.Target;
+            var calculatableNeurons = calculatableNeuronTarget.GetTarget(network);
+            var filteredNeurons = _modConfig.ActivationFunctionModificationConfiguration.GradationFilter.Filter(calculatableNeurons);
+            foreach (var calculatableNeuron in filteredNeurons)
+            {
+                calculatableNeuron.ActivationFunction = _modConfig.ActivationFunctionModificationConfiguration.ActivationFunctionManipulator.Modify(calculatableNeuron.ActivationFunction);
+            }
+        }
+
+        private void ManipulateWeights(INeuralNetwork network)
+        {
+            var synapseTarget = _modConfig.WeightModificationConfiguration.Target;
+            var synapses = synapseTarget.GetTarget(network);
+            var filterSynapses = _modConfig.WeightModificationConfiguration.GradationFilter.Filter(synapses);
+            foreach (var synapse in filterSynapses)
+            {
+                synapse.Weight = _modConfig.WeightModificationConfiguration.Manipulation.Modify(synapse.Weight);
+            }
         }
 
         private void ManipulateBiases(INeuralNetwork network)

@@ -42,5 +42,10 @@ namespace BabySteps.NeuralNetwork.Synapses
         {
             Weight = 0;
         }
+
+        public override string ToString()
+        {
+            return $"Weight {Weight}";
+        }
     }
 }

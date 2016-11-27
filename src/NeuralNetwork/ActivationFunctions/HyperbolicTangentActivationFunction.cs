@@ -14,5 +14,10 @@ namespace BabySteps.NeuralNetwork.ActivationFunctions
         {
             return Math.Tanh(calculatedInput);
         }
+
+        public override string ToString()
+        {
+            return $"HyperbolicTangent function in category {Category}";
+        }
     }
 }

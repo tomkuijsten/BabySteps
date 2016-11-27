@@ -57,6 +57,7 @@
     <Compile Include="Neurons\Bias.cs" />
     <Compile Include="Neurons\CalculatableNeuron.cs" />
     <Compile Include="Neurons\HiddenNeuron.cs" />
+    <Compile Include="Neurons\ICalculatableNeuron.cs" />
     <Compile Include="Neurons\InputNeuron.cs" />
     <Compile Include="Neurons\Neuron.cs" />
     <Compile Include="Neurons\OutputNeuron.cs" />

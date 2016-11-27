@@ -38,6 +38,13 @@
     <!-- A reference to the entire .NET Framework is automatically included -->
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ModificationConfiguration\ActivationFunctionModification\ActivationFunctionModificationConfiguration.cs" />
+    <Compile Include="ModificationConfiguration\ActivationFunctionModification\AllActivationFunctionModificationGradationFilter.cs" />
+    <Compile Include="ModificationConfiguration\ActivationFunctionModification\AllActivationFunctionModificationTarget.cs" />
+    <Compile Include="ModificationConfiguration\ActivationFunctionModification\IActivationFunctionModificationGradationFilter.cs" />
+    <Compile Include="ModificationConfiguration\ActivationFunctionModification\IActivationFunctionModificationManipulator.cs" />
+    <Compile Include="ModificationConfiguration\ActivationFunctionModification\IActivationFunctionModificationTarget.cs" />
+    <Compile Include="ModificationConfiguration\ActivationFunctionModification\RandomActivationFunctionModificationManipulator.cs" />
     <Compile Include="ModificationConfiguration\BiasModification\AllBiasModificationGradationFilter.cs" />
     <Compile Include="ModificationConfiguration\BiasModification\AllBiasModificationTarget.cs" />
     <Compile Include="ModificationConfiguration\BiasModification\BiasModificationConfiguration.cs" />
@@ -47,9 +54,17 @@
     <Compile Include="ModificationConfiguration\BiasModification\IBiasModificationWeight.cs" />
     <Compile Include="ModificationConfiguration\BiasModification\PercentageVariationBiasModificationWeight.cs" />
     <Compile Include="ModificationConfiguration\BiasModification\StaticValueBiasModificationWeight.cs" />
-    <Compile Include="Class1.cs" />
     <Compile Include="ModificationConfiguration\INetworkModificationConfiguration.cs" />
     <Compile Include="ModificationConfiguration\NetworkModificationConfiguration.cs" />
+    <Compile Include="ModificationConfiguration\ActivationFunctionModification\IActivationFunctionModificationConfiguration.cs" />
+    <Compile Include="ModificationConfiguration\WeightModification\AllWeightModificationTarget.cs" />
+    <Compile Include="ModificationConfiguration\WeightModification\IWeightModification.cs" />
+    <Compile Include="ModificationConfiguration\WeightModification\IWeightModificationConfiguration.cs" />
+    <Compile Include="ModificationConfiguration\WeightModification\IWeightModificationGradationFilter.cs" />
+    <Compile Include="ModificationConfiguration\WeightModification\IWeightModificationTarget.cs" />
+    <Compile Include="ModificationConfiguration\WeightModification\StaticValueWeightModification.cs" />
+    <Compile Include="ModificationConfiguration\WeightModification\WeightModificationConfiguration.cs" />
+    <Compile Include="ModificationConfiguration\WeightModification\AllWeightModificationGradationFilter.cs" />
     <Compile Include="NetworkInitializer.cs" />
     <Compile Include="NetworkManipulator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -60,5 +75,6 @@
       <Name>NeuralNetwork</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
 </Project>

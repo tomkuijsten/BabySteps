@@ -45,6 +45,9 @@ namespace BabySteps.NeuralNetwork.ActivationFunctions
 
             foreach (ActivationFunctionCategory category in Enum.GetValues(typeof(ActivationFunctionCategory)))
             {
+                if (category == ActivationFunctionCategory.Unsorted)
+                    continue;
+
                 _activationFunctionsByCategory[category] = _allActivationFunctions.Where(f => f.Category == category).ToArray();
             }
         }

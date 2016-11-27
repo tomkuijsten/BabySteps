@@ -14,5 +14,10 @@ namespace BabySteps.NeuralNetwork.ActivationFunctions
         {
             return calculatedInput;
         }
+
+        public override string ToString()
+        {
+            return $"Linear function in category {Category}";
+        }
     }
 }

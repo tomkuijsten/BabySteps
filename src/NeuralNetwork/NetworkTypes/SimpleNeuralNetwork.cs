@@ -10,6 +10,7 @@ namespace BabySteps.NeuralNetwork.NetworkTypes
     public class SimpleNeuralNetwork : INeuralNetwork
     {
         public int Generation { get; set; }
+        public HashSet<Neuron> Neurons { get; private set; }
         public HashSet<InputNeuron> Inputs { get; private set; }
         public HashSet<OutputNeuron> Output { get; private set; }
         public HashSet<HiddenNeuron> Hidden { get; private set; }
@@ -29,6 +30,12 @@ namespace BabySteps.NeuralNetwork.NetworkTypes
             FindOutput();
             FindBiases();
             FindSynapses();
+            FindNeurons();
+        }
+
+        private void FindNeurons()
+        {
+            Neurons = new HashSet<Neuron>(new Neuron[0].Concat(Inputs).Concat(Hidden).Concat(Output));
         }
 
         private void FindSynapses()
@@ -112,6 +119,11 @@ namespace BabySteps.NeuralNetwork.NetworkTypes
             var incomingSum = hidden.Incoming.Sum(i => i.From.Value * i.Weight);
             var withBias = incomingSum + (hidden.BiasSynapse.From.Value * hidden.BiasSynapse.Weight);
             hidden.Value = hidden.ActivationFunction.Activate(withBias);
+        }
+
+        public override string ToString()
+        {
+            return $"Simple network (generation {Generation}) with {Inputs.Count} inputs, {Hidden.Count} hiddens and {Output.Count} outputs";
         }
     }
 }

@@ -14,5 +14,10 @@ namespace BabySteps.NeuralNetwork.ActivationFunctions
         {
             return (calculatedInput >= 1) ? 1 : (calculatedInput <= -1) ? -1 : calculatedInput;
         }
+
+        public override string ToString()
+        {
+            return $"LinearTruncated function in category {Category}";
+        }
     }
 }

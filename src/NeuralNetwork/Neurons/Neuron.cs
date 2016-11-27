@@ -14,5 +14,10 @@ namespace BabySteps.NeuralNetwork.Neurons
         {
             Value = 0;
         }
+
+        public override string ToString()
+        {
+            return $"Nueron value is {Value}";
+        }
     }
 }
