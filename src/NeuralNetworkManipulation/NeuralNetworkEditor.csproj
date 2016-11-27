@@ -38,7 +38,20 @@
     <!-- A reference to the entire .NET Framework is automatically included -->
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ModificationConfiguration\BiasModification\AllBiasModificationGradationFilter.cs" />
+    <Compile Include="ModificationConfiguration\BiasModification\AllBiasModificationTarget.cs" />
+    <Compile Include="ModificationConfiguration\BiasModification\BiasModificationConfiguration.cs" />
+    <Compile Include="ModificationConfiguration\BiasModification\IBiasModificationConfiguration.cs" />
+    <Compile Include="ModificationConfiguration\BiasModification\IBiasModificationGradationFilter.cs" />
+    <Compile Include="ModificationConfiguration\BiasModification\IBiasModificationTarget.cs" />
+    <Compile Include="ModificationConfiguration\BiasModification\IBiasModificationWeight.cs" />
+    <Compile Include="ModificationConfiguration\BiasModification\PercentageVariationBiasModificationWeight.cs" />
+    <Compile Include="ModificationConfiguration\BiasModification\StaticValueBiasModificationWeight.cs" />
     <Compile Include="Class1.cs" />
+    <Compile Include="ModificationConfiguration\INetworkModificationConfiguration.cs" />
+    <Compile Include="ModificationConfiguration\NetworkModificationConfiguration.cs" />
+    <Compile Include="NetworkInitializer.cs" />
+    <Compile Include="NetworkManipulator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

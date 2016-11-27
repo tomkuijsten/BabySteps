@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeuralNetwork", "NeuralNetw
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeneticAlgorithm", "GeneticAlgorithm\GeneticAlgorithm.csproj", "{2358FDAE-4B41-482E-8B5E-E4F45BB950A6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeuralNetworkManipulation", "NeuralNetworkManipulation\NeuralNetworkManipulation.csproj", "{74358058-4FCA-44CE-96E0-12FE67CC7550}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeuralNetworkEditor", "NeuralNetworkManipulation\NeuralNetworkEditor.csproj", "{74358058-4FCA-44CE-96E0-12FE67CC7550}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTests", "UnitTests", "{2B0DFE07-C620-4D67-9038-D04E541ECC24}"
 EndProject

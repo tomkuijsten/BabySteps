@@ -57,9 +57,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\NeuralNetworkManipulation\NeuralNetworkManipulation.csproj">
+    <ProjectReference Include="..\NeuralNetworkManipulation\NeuralNetworkEditor.csproj">
       <Project>{74358058-4FCA-44CE-96E0-12FE67CC7550}</Project>
-      <Name>NeuralNetworkManipulation</Name>
+      <Name>NeuralNetworkEditor</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NeuralNetwork\NeuralNetwork.csproj">
+      <Project>{0955C4F3-2760-4B21-A67C-AB451B823B0E}</Project>
+      <Name>NeuralNetwork</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
