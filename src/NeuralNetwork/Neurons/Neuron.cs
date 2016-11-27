@@ -9,5 +9,10 @@ namespace BabySteps.NeuralNetwork.Neurons
     public abstract class Neuron
     {
         public double Value { get; set; }
+
+        public Neuron()
+        {
+            Value = 0;
+        }
     }
 }

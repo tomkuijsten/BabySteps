@@ -3,8 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using BabySteps.NeuralNetwork.Synapses;
 
-namespace BabySteps.NeuralNetwork
+namespace BabySteps.NeuralNetwork.NetworkTypes
 {
     public class SimpleNeuralNetwork : INeuralNetwork
     {
@@ -12,19 +13,8 @@ namespace BabySteps.NeuralNetwork
         public HashSet<InputNeuron> Inputs { get; private set; }
         public HashSet<OutputNeuron> Output { get; private set; }
         public HashSet<HiddenNeuron> Hidden { get; private set; }
-
-        public IEnumerable<Bias> Biases
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-
-            set
-            {
-                throw new NotImplementedException();
-            }
-        }
+        public HashSet<Bias> Biases { get; set; }
+        public HashSet<ISynapse> Synapses { get; private set; }
 
         public SimpleNeuralNetwork(IEnumerable<InputNeuron> inputs)
         {
@@ -32,10 +22,39 @@ namespace BabySteps.NeuralNetwork
             Inputs = new HashSet<InputNeuron>(inputs);
             Hidden = new HashSet<HiddenNeuron>();
             Output = new HashSet<OutputNeuron>();
+            Biases = new HashSet<Bias>();
+            Synapses = new HashSet<ISynapse>();
 
             FindHidden();
-
             FindOutput();
+            FindBiases();
+            FindSynapses();
+        }
+
+        private void FindSynapses()
+        {
+            foreach (var outputSynapse in Inputs.SelectMany(i => i.Outgoing))
+            {
+                Synapses.Add(outputSynapse);
+                Synapses.Add(outputSynapse.To.BiasSynapse);
+                foreach (var targetOutput in outputSynapse.To.Outgoing)
+                {
+                    Synapses.Add(targetOutput);
+                    Synapses.Add(targetOutput.To.BiasSynapse);
+                }
+            }
+        }
+
+        private void FindBiases()
+        {
+            foreach (var outputSynapse in Inputs.SelectMany(i => i.Outgoing))
+            {
+                Biases.Add(outputSynapse.To.BiasSynapse.From);
+                foreach (var targetOutput in outputSynapse.To.Outgoing)
+                {
+                    Biases.Add(targetOutput.To.BiasSynapse.From);
+                }
+            }
         }
 
         private void FindHidden()

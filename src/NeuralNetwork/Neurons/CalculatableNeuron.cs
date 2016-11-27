@@ -17,7 +17,7 @@ namespace BabySteps.NeuralNetwork.Neurons
         public CalculatableNeuron()
         {
             Incoming = new List<Synapse<TFrom, TTo>>();
-            ActivationFunction = ActivationFunctionCollection.GetRandom();
+            ActivationFunction = ActivationFunctionFactory.NotImplemented;
         }
     }
 }

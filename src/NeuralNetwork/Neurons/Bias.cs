@@ -10,10 +10,5 @@ namespace BabySteps.NeuralNetwork.Neurons
     public class Bias : Neuron
     {
         public Synapse<Bias, Neuron> Outgoing { get; set; }
-
-        public Bias()
-        {
-            Value = 1;
-        }
     }
 }

@@ -7,17 +7,40 @@ using System.Threading.Tasks;
 
 namespace BabySteps.NeuralNetwork.Synapses
 {
-    public class Synapse<TIn, TOut> where TIn : Neuron where TOut : Neuron
+    public class Synapse<TIn, TOut> : ISynapse where TIn : Neuron where TOut : Neuron
     {
-        private static Random RANDOMIZER = new Random();
-
         public TIn From { get; set; }
         public TOut To { get; set; }
         public double Weight { get; set; }
 
+        object ISynapse.From
+        {
+            get
+            {
+                return From;
+            }
+
+            set
+            {
+                From = (TIn)value;
+            }
+        }
+
+        object ISynapse.To
+        {
+            get
+            {
+                return this.To;
+            }
+            set
+            {
+                To = (TOut)value;
+            }
+        }
+
         public Synapse()
         {
-            Weight = RANDOMIZER.NextDouble() * 10 -5;
+            Weight = 0;
         }
     }
 }

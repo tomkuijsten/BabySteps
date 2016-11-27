@@ -11,15 +11,7 @@ namespace BabySteps.NeuralNetwork.NetworkManipulation
     {
         public void ManipulateNetwork(INeuralNetwork network)
         {
-            var manipulationConfig = NetworkModificationConfiguration.Create()
-                .ConfigureBias(BiasModificationConfiguration.Create()
-                    .ConfigureGradationFilter(AllBiasModificationGradationFilter.Create())
-                    .ConfigureTarget(AllBiasModificationTarget.Create())
-                    .ConfigureWeight(PercentageVariationBiasModificationWeight.Create(0.9, 1.1)));
 
-            var manipulator = new NetworkManipulator(manipulationConfig);
-
-            manipulator.Manipulate(network);
         }
     }
 

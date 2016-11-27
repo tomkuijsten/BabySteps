@@ -4,6 +4,7 @@
     {
         Lineair,
         Binary,
-        Logistic
+        Logistic,
+        Unsorted
     }
 }

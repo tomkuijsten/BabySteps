@@ -8,11 +8,9 @@ using System.Threading.Tasks;
 
 namespace BabySteps.NeuralNetwork.NetworkTypes
 {
-    public static class SimpleNeuronNetworkFactory
+    public static class SimpleNeuralNetworkFactory
     {
-        private static Random _rondomizer = new Random();
-
-        public static SimpleNeuralNetwork CreateNeuralNetwork(int nrOfInput, int nrOfHidden, int nrOfOutputs)
+        public static SimpleNeuralNetwork Create(int nrOfInput, int nrOfHidden, int nrOfOutputs)
         {
             var inputs = Enumerable.Range(0, nrOfInput).Select(i => new InputNeuron()).ToArray();
             var hiddens = Enumerable.Range(0, nrOfHidden).Select(i => new HiddenNeuron()).ToArray();
@@ -27,41 +25,6 @@ namespace BabySteps.NeuralNetwork.NetworkTypes
             CreateOutputBiases(outputs);
 
             return new SimpleNeuralNetwork(inputs);
-        }
-
-        public static INeuralNetwork CreateNeuralNetwork(INeuralNetwork baseNetwork)
-        {
-            var baseVariation = new SimpleNeuralNetwork(baseNetwork.Inputs);
-
-            foreach (var input in baseVariation.Inputs)
-            {
-                input.Value = 0;
-                foreach (var syn in input.Outgoing)
-                {
-                    syn.Weight *= (_rondomizer.NextDouble() + 0.5);
-                }
-            }
-
-            foreach (var hidd in baseVariation.Hidden)
-            {
-                hidd.Value = 0;
-                hidd.BiasSynapse.Weight *= (_rondomizer.NextDouble() + 0.5);
-                hidd.BiasSynapse.From.Value *= (_rondomizer.NextDouble() + 0.5);
-                foreach (var syn in hidd.Outgoing)
-                {
-                    syn.Weight *= (_rondomizer.NextDouble() + 0.5);
-                }
-            }
-
-            foreach (var output in baseVariation.Output)
-            {
-                output.Value = 0;
-
-                output.BiasSynapse.Weight *= (_rondomizer.NextDouble() + 0.5);
-                output.BiasSynapse.From.Value *= (_rondomizer.NextDouble() + 0.5);
-            }
-
-            return baseVariation;
         }
 
         private static void CreateOutputBiases(IEnumerable<OutputNeuron> outputs)

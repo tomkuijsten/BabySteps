@@ -30,14 +30,14 @@ namespace ConsoleApp1
                     {
                         for (int i = 0; i < 100; i++)
                         {
-                            networks.Add(SimpleNeuronNetworkFactory.CreateNeuralNetwork(nn));
+                            //networks.Add(SimpleNeuralNetworkFactory.Create(nn));
                         }
                     }
                 }
 
                 for (int i = networks.Count; i < 5000; i++)
                 {
-                    networks.Add(SimpleNeuronNetworkFactory.CreateNeuralNetwork(4, 20, 3));
+                    networks.Add(SimpleNeuralNetworkFactory.Create(4, 20, 3));
                 }
 
                 Dictionary<INeuralNetwork, double> score = new Dictionary<INeuralNetwork, double>();
