@@ -7,14 +7,14 @@ using BabySteps.NeuralNetwork.ActivationFunctions;
 
 namespace BabySteps.NeuralNetworkManipulation.ModificationConfiguration.ActivationFunctionModification
 {
-    public class RandomActivationFunctionModificationManipulator : IActivationFunctionModificationManipulator
+    public class RandomActivationFunctionModifier : IActivationFunctionModifier
     {
 
-        private RandomActivationFunctionModificationManipulator() { }
+        private RandomActivationFunctionModifier() { }
 
-        public static RandomActivationFunctionModificationManipulator Create()
+        public static RandomActivationFunctionModifier Create()
         {
-            return new RandomActivationFunctionModificationManipulator();
+            return new RandomActivationFunctionModifier();
         }
 
         public IActivationFunction Modify(IActivationFunction originalValue)

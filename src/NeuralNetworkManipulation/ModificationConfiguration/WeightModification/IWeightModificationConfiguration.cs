@@ -10,10 +10,6 @@ namespace BabySteps.NeuralNetworkManipulation.ModificationConfiguration.WeightMo
     {
         IWeightModificationTarget Target { get; }
         IWeightModificationGradationFilter GradationFilter { get; }
-        IWeightModification Manipulation { get; }
-
-        IWeightModificationConfiguration ConfigureGradationFilter(IWeightModificationGradationFilter weightModificationGradationFilter);
-        IWeightModificationConfiguration ConfigureTarget(IWeightModificationTarget weightModificationTarget);
-        IWeightModificationConfiguration ConfigureModification(IWeightModification weightModification);
+        IWeightModifier Modifier { get; }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace BabySteps.NeuralNetworkManipulation.ModificationConfiguration.ActivationFunctionModification
 {
-    public interface IActivationFunctionModificationManipulator
+    public interface IActivationFunctionModifier
     {
         IActivationFunction Modify(IActivationFunction originalValue);
     }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BabySteps.NeuralNetworkManipulation.ModificationConfiguration.BiasModification
 {
-    public interface IBiasModificationWeight
+    public interface IBiasModifier
     {
         double Modify(double originalValue);
     }

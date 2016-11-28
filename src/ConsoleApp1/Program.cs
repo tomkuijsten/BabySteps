@@ -17,8 +17,7 @@ namespace ConsoleApp1
         static void Main(string[] args)
         {
             var nn = SimpleNeuralNetworkFactory.Create(1, 1, 1);
-            var initializer = new NetworkInitializer(1);
-            initializer.Initialize(nn);
+            NetworkEditor.InitializeStaticValue(nn, 1, 1);
         }
     }
 }

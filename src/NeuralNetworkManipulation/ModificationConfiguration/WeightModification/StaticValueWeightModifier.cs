@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace BabySteps.NeuralNetworkManipulation.ModificationConfiguration.WeightModification
 {
-    public class StaticValueWeightModification : IWeightModification
+    public class StaticValueWeightModifier : IWeightModifier
     {
         private double _staticValue;
 
-        private StaticValueWeightModification() { }
+        private StaticValueWeightModifier() { }
 
-        public static StaticValueWeightModification Create(double staticValue)
+        public static StaticValueWeightModifier Create(double staticValue)
         {
-            var instance = new StaticValueWeightModification()
+            var instance = new StaticValueWeightModifier()
             {
                 _staticValue = staticValue
             };

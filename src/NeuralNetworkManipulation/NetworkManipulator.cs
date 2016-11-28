@@ -31,7 +31,7 @@ namespace BabySteps.NeuralNetworkManipulation
             var filteredNeurons = _modConfig.ActivationFunctionModificationConfiguration.GradationFilter.Filter(calculatableNeurons);
             foreach (var calculatableNeuron in filteredNeurons)
             {
-                calculatableNeuron.ActivationFunction = _modConfig.ActivationFunctionModificationConfiguration.ActivationFunctionManipulator.Modify(calculatableNeuron.ActivationFunction);
+                calculatableNeuron.ActivationFunction = _modConfig.ActivationFunctionModificationConfiguration.Modifier.Modify(calculatableNeuron.ActivationFunction);
             }
         }
 
@@ -42,7 +42,7 @@ namespace BabySteps.NeuralNetworkManipulation
             var filterSynapses = _modConfig.WeightModificationConfiguration.GradationFilter.Filter(synapses);
             foreach (var synapse in filterSynapses)
             {
-                synapse.Weight = _modConfig.WeightModificationConfiguration.Manipulation.Modify(synapse.Weight);
+                synapse.Weight = _modConfig.WeightModificationConfiguration.Modifier.Modify(synapse.Weight);
             }
         }
 
@@ -53,7 +53,7 @@ namespace BabySteps.NeuralNetworkManipulation
             var filterTargets = _modConfig.BiasModificationConfiguration.GradationFilter.Filter(biases);
             foreach (var bias in filterTargets)
             {
-                var newBiasWeight = _modConfig.BiasModificationConfiguration.WeightManipulation.Modify(bias.Outgoing.Weight);
+                var newBiasWeight = _modConfig.BiasModificationConfiguration.Modifier.Modify(bias.Outgoing.Weight);
                 bias.Outgoing.Weight = newBiasWeight;
             }
         }

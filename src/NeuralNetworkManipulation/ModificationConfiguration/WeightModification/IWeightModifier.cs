@@ -1,6 +1,6 @@
 ﻿namespace BabySteps.NeuralNetworkManipulation.ModificationConfiguration.WeightModification
 {
-    public interface IWeightModification
+    public interface IWeightModifier
     {
         double Modify(double originalValue);
     }

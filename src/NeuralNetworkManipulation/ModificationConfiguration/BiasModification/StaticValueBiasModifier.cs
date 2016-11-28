@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace BabySteps.NeuralNetworkManipulation.ModificationConfiguration.BiasModification
 {
-    public class StaticValueBiasModificationWeight : IBiasModificationWeight
+    public class StaticValueBiasModifier : IBiasModifier
     {
         private double _staticValue;
 
-        private StaticValueBiasModificationWeight() { }
+        private StaticValueBiasModifier() { }
 
-        public static StaticValueBiasModificationWeight Create(double staticValue)
+        public static StaticValueBiasModifier Create(double staticValue)
         {
-            var instance = new StaticValueBiasModificationWeight()
+            var instance = new StaticValueBiasModifier()
             {
                 _staticValue = staticValue
             };

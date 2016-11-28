@@ -10,10 +10,6 @@ namespace BabySteps.NeuralNetworkManipulation.ModificationConfiguration.Activati
     {
         IActivationFunctionModificationTarget Target { get; }
         IActivationFunctionModificationGradationFilter GradationFilter { get; }
-        IActivationFunctionModificationManipulator ActivationFunctionManipulator { get; }
-
-        IActivationFunctionModificationConfiguration ConfigureGradationFilter(IActivationFunctionModificationGradationFilter activationFunctionModificationGradationFilter);
-        IActivationFunctionModificationConfiguration ConfigureTarget(IActivationFunctionModificationTarget activationFunctionModificationTarget);
-        IActivationFunctionModificationConfiguration ConfigureManipulator(IActivationFunctionModificationManipulator activationFunctionModificationManipulator);
+        IActivationFunctionModifier Modifier { get; }
     }
 }

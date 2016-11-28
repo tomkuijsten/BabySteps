@@ -10,10 +10,6 @@ namespace BabySteps.NeuralNetworkManipulation.ModificationConfiguration.BiasModi
     {
         IBiasModificationTarget Target { get; }
         IBiasModificationGradationFilter GradationFilter { get; }
-        IBiasModificationWeight WeightManipulation { get; }
-
-        IBiasModificationConfiguration ConfigureGradationFilter(IBiasModificationGradationFilter biasModificationGradationFilter);
-        IBiasModificationConfiguration ConfigureTarget(IBiasModificationTarget biasModificationTarget);
-        IBiasModificationConfiguration ConfigureWeight(IBiasModificationWeight biasModificationWeight);
+        IBiasModifier Modifier { get; }
     }
 }

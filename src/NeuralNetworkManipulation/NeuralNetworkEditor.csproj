@@ -38,36 +38,50 @@
     <!-- A reference to the entire .NET Framework is automatically included -->
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DoubleRange.cs" />
     <Compile Include="ModificationConfiguration\ActivationFunctionModification\ActivationFunctionModificationConfiguration.cs" />
+    <Compile Include="ModificationConfiguration\ActivationFunctionModification\IgnoreActivationFunctionModificationConfiguration.cs" />
+    <Compile Include="ModificationConfiguration\ActivationFunctionModification\NoneActivationFunctionModificationGradationFilter.cs" />
     <Compile Include="ModificationConfiguration\ActivationFunctionModification\AllActivationFunctionModificationGradationFilter.cs" />
+    <Compile Include="ModificationConfiguration\ActivationFunctionModification\NoneActivationFunctionModificationTarget.cs" />
     <Compile Include="ModificationConfiguration\ActivationFunctionModification\AllActivationFunctionModificationTarget.cs" />
     <Compile Include="ModificationConfiguration\ActivationFunctionModification\IActivationFunctionModificationGradationFilter.cs" />
-    <Compile Include="ModificationConfiguration\ActivationFunctionModification\IActivationFunctionModificationManipulator.cs" />
+    <Compile Include="ModificationConfiguration\ActivationFunctionModification\IActivationFunctionModifier.cs" />
     <Compile Include="ModificationConfiguration\ActivationFunctionModification\IActivationFunctionModificationTarget.cs" />
-    <Compile Include="ModificationConfiguration\ActivationFunctionModification\RandomActivationFunctionModificationManipulator.cs" />
+    <Compile Include="ModificationConfiguration\ActivationFunctionModification\RandomActivationFunctionModifier.cs" />
     <Compile Include="ModificationConfiguration\BiasModification\AllBiasModificationGradationFilter.cs" />
     <Compile Include="ModificationConfiguration\BiasModification\AllBiasModificationTarget.cs" />
     <Compile Include="ModificationConfiguration\BiasModification\BiasModificationConfiguration.cs" />
     <Compile Include="ModificationConfiguration\BiasModification\IBiasModificationConfiguration.cs" />
     <Compile Include="ModificationConfiguration\BiasModification\IBiasModificationGradationFilter.cs" />
     <Compile Include="ModificationConfiguration\BiasModification\IBiasModificationTarget.cs" />
-    <Compile Include="ModificationConfiguration\BiasModification\IBiasModificationWeight.cs" />
-    <Compile Include="ModificationConfiguration\BiasModification\PercentageVariationBiasModificationWeight.cs" />
-    <Compile Include="ModificationConfiguration\BiasModification\StaticValueBiasModificationWeight.cs" />
+    <Compile Include="ModificationConfiguration\BiasModification\IBiasModifier.cs" />
+    <Compile Include="ModificationConfiguration\BiasModification\IgnoreBiasModificationConfiguration.cs" />
+    <Compile Include="ModificationConfiguration\BiasModification\NoneBiasModificationGradationFilter.cs" />
+    <Compile Include="ModificationConfiguration\BiasModification\NoneBiasModificationTarget.cs" />
+    <Compile Include="ModificationConfiguration\BiasModification\PercentageVariationBiasModifier.cs" />
+    <Compile Include="ModificationConfiguration\BiasModification\RandomBiasModifier.cs" />
+    <Compile Include="ModificationConfiguration\BiasModification\StaticValueBiasModifier.cs" />
     <Compile Include="ModificationConfiguration\INetworkModificationConfiguration.cs" />
     <Compile Include="ModificationConfiguration\NetworkModificationConfiguration.cs" />
     <Compile Include="ModificationConfiguration\ActivationFunctionModification\IActivationFunctionModificationConfiguration.cs" />
+    <Compile Include="ModificationConfiguration\WeightModification\IgnoreWeightModificationConfiguration.cs" />
+    <Compile Include="ModificationConfiguration\WeightModification\NoneWeightModificationGradationFilter.cs" />
+    <Compile Include="ModificationConfiguration\WeightModification\NoneWeightModificationTarget.cs" />
     <Compile Include="ModificationConfiguration\WeightModification\AllWeightModificationTarget.cs" />
-    <Compile Include="ModificationConfiguration\WeightModification\IWeightModification.cs" />
+    <Compile Include="ModificationConfiguration\WeightModification\IWeightModifier.cs" />
     <Compile Include="ModificationConfiguration\WeightModification\IWeightModificationConfiguration.cs" />
     <Compile Include="ModificationConfiguration\WeightModification\IWeightModificationGradationFilter.cs" />
     <Compile Include="ModificationConfiguration\WeightModification\IWeightModificationTarget.cs" />
-    <Compile Include="ModificationConfiguration\WeightModification\StaticValueWeightModification.cs" />
+    <Compile Include="ModificationConfiguration\WeightModification\PercentageVariationWeightModifier.cs" />
+    <Compile Include="ModificationConfiguration\WeightModification\RandomWeightModifier.cs" />
+    <Compile Include="ModificationConfiguration\WeightModification\StaticValueWeightModifier.cs" />
     <Compile Include="ModificationConfiguration\WeightModification\WeightModificationConfiguration.cs" />
     <Compile Include="ModificationConfiguration\WeightModification\AllWeightModificationGradationFilter.cs" />
-    <Compile Include="NetworkInitializer.cs" />
+    <Compile Include="NetworkEditor.cs" />
     <Compile Include="NetworkManipulator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Randomizer.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\NeuralNetwork\NeuralNetwork.csproj">

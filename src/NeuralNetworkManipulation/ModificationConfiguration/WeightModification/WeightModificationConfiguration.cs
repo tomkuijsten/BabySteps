@@ -9,27 +9,27 @@ namespace BabySteps.NeuralNetworkManipulation.ModificationConfiguration.WeightMo
     public class WeightModificationConfiguration : IWeightModificationConfiguration
     {
         public IWeightModificationGradationFilter GradationFilter { get; private set; }
-        public IWeightModification Manipulation { get; private set; }
+        public IWeightModifier Modifier { get; private set; }
         public IWeightModificationTarget Target { get; private set; }
 
-        public static IWeightModificationConfiguration Create()
+        public static WeightModificationConfiguration Create()
         {
             return new WeightModificationConfiguration();
         }
 
-        public IWeightModificationConfiguration ConfigureGradationFilter(IWeightModificationGradationFilter weightModificationGradationFilter)
+        public WeightModificationConfiguration ConfigureGradationFilter(IWeightModificationGradationFilter weightModificationGradationFilter)
         {
             GradationFilter = weightModificationGradationFilter;
             return this;
         }
 
-        public IWeightModificationConfiguration ConfigureModification(IWeightModification weightModification)
+        public WeightModificationConfiguration ConfigureModifier(IWeightModifier weightModifier)
         {
-            Manipulation = weightModification;
+            Modifier = weightModifier;
             return this;
         }
 
-        public IWeightModificationConfiguration ConfigureTarget(IWeightModificationTarget weightModificationTarget)
+        public WeightModificationConfiguration ConfigureTarget(IWeightModificationTarget weightModificationTarget)
         {
             Target = weightModificationTarget;
             return this;

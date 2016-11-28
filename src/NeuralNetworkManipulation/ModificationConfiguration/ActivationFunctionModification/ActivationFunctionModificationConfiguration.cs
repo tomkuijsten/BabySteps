@@ -8,7 +8,7 @@ namespace BabySteps.NeuralNetworkManipulation.ModificationConfiguration.Activati
 {
     public class ActivationFunctionModificationConfiguration : IActivationFunctionModificationConfiguration
     {
-        public IActivationFunctionModificationManipulator ActivationFunctionManipulator { get; private set; }
+        public IActivationFunctionModifier Modifier { get; private set; }
         public IActivationFunctionModificationGradationFilter GradationFilter { get; private set; }
         public IActivationFunctionModificationTarget Target { get; private set; }
 
@@ -19,21 +19,21 @@ namespace BabySteps.NeuralNetworkManipulation.ModificationConfiguration.Activati
             return new ActivationFunctionModificationConfiguration();
         }
 
-        public IActivationFunctionModificationConfiguration ConfigureGradationFilter(IActivationFunctionModificationGradationFilter activationFunctionModificationGradationFilter)
+        public ActivationFunctionModificationConfiguration ConfigureGradationFilter(IActivationFunctionModificationGradationFilter activationFunctionModificationGradationFilter)
         {
             GradationFilter = activationFunctionModificationGradationFilter;
             return this;
         }
 
-        public IActivationFunctionModificationConfiguration ConfigureTarget(IActivationFunctionModificationTarget activationFunctionModificationTarget)
+        public ActivationFunctionModificationConfiguration ConfigureTarget(IActivationFunctionModificationTarget activationFunctionModificationTarget)
         {
             Target = activationFunctionModificationTarget;
             return this;
         }
 
-        public IActivationFunctionModificationConfiguration ConfigureManipulator(IActivationFunctionModificationManipulator activationFunctionModificationManipulator)
+        public ActivationFunctionModificationConfiguration ConfigureModifier(IActivationFunctionModifier activationFunctionModifier)
         {
-            ActivationFunctionManipulator = activationFunctionModificationManipulator;
+            Modifier = activationFunctionModifier;
             return this;
         }
     }

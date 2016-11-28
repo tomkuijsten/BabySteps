@@ -9,30 +9,29 @@ namespace BabySteps.NeuralNetworkManipulation.ModificationConfiguration.BiasModi
     public class BiasModificationConfiguration : IBiasModificationConfiguration
     {
         public IBiasModificationGradationFilter GradationFilter { get; private set; }
-
         public IBiasModificationTarget Target { get; private set; }
-        public IBiasModificationWeight WeightManipulation { get; private set; }
+        public IBiasModifier Modifier { get; private set; }
 
-        public static IBiasModificationConfiguration Create()
+        public static BiasModificationConfiguration Create()
         {
             return new BiasModificationConfiguration();
         }
 
-        public IBiasModificationConfiguration ConfigureGradationFilter(IBiasModificationGradationFilter biasModificationGradationFilter)
+        public BiasModificationConfiguration ConfigureGradationFilter(IBiasModificationGradationFilter biasModificationGradationFilter)
         {
             GradationFilter = biasModificationGradationFilter;
             return this;
         }
 
-        public IBiasModificationConfiguration ConfigureTarget(IBiasModificationTarget biasModificationTarget)
+        public BiasModificationConfiguration ConfigureTarget(IBiasModificationTarget biasModificationTarget)
         {
             Target = biasModificationTarget;
             return this;
         }
 
-        public IBiasModificationConfiguration ConfigureWeight(IBiasModificationWeight biasModificationWeight)
+        public BiasModificationConfiguration ConfigureModifier(IBiasModifier biasModifier)
         {
-            WeightManipulation = biasModificationWeight;
+            Modifier = biasModifier;
             return this;
         }
     }
