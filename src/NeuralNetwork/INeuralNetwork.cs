@@ -16,6 +16,7 @@ namespace BabySteps.NeuralNetwork
         HashSet<InputNeuron> Inputs { get; }
         HashSet<OutputNeuron> Output { get; }
         HashSet<Bias> Biases { get; }
-        void CalculateNeuralNetwork(params double[] inputValues);
+        double[] CalculateNeuralNetwork(params double[] inputValues);
+        INeuralNetwork Clone();
     }
 }

@@ -7,7 +7,7 @@ using BabySteps.NeuralNetwork.Synapses;
 
 namespace BabySteps.NeuralNetwork.NetworkTypes
 {
-    public class SimpleNeuralNetwork : INeuralNetwork
+    public class SimpleNeuralNetwork : INeuralNetwork, IClonable<INeuralNetwork>
     {
         public int Generation { get; set; }
         public HashSet<Neuron> Neurons { get; private set; }
@@ -86,7 +86,7 @@ namespace BabySteps.NeuralNetwork.NetworkTypes
             }
         }
 
-        public void CalculateNeuralNetwork(params double[] inputValues)
+        public double[] CalculateNeuralNetwork(params double[] inputValues)
         {
             if (inputValues.Count() != Inputs.Count)
                 throw new ArgumentException(nameof(inputValues));
@@ -105,6 +105,8 @@ namespace BabySteps.NeuralNetwork.NetworkTypes
             {
                 CalculateOutput(output);
             }
+
+            return Output.Select(o => o.Value).ToArray();
         }
 
         private static void CalculateOutput(OutputNeuron output)
@@ -124,6 +126,27 @@ namespace BabySteps.NeuralNetwork.NetworkTypes
         public override string ToString()
         {
             return $"Simple network (generation {Generation}) with {Inputs.Count} inputs, {Hidden.Count} hiddens and {Output.Count} outputs";
+        }
+
+        public INeuralNetwork Clone()
+        {
+            var simpleNetwork = SimpleNeuralNetworkFactory.Create(Inputs.Count, Hidden.Count, Output.Count);
+
+            // Copy weights
+            for (int i = 0; i < Synapses.Count; i++)
+            {
+                simpleNetwork.Synapses.ElementAt(i).Weight = Synapses.ElementAt(i).Weight;
+            }
+
+            // Copy activation functions
+            var sourceNeurons = Neurons.OfType<ICalculatableNeuron>().ToArray();
+            var targetNeurons = simpleNetwork.Neurons.OfType<ICalculatableNeuron>().ToArray();
+            for (int i = 0; i < sourceNeurons.Count(); i++)
+            {
+                targetNeurons.ElementAt(i).ActivationFunction = sourceNeurons.ElementAt(i).ActivationFunction;
+            }
+
+            return simpleNetwork;
         }
     }
 }

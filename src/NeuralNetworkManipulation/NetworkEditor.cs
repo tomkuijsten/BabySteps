@@ -11,9 +11,11 @@ using System.Threading.Tasks;
 
 namespace BabySteps.NeuralNetworkManipulation
 {
-    public static class NetworkEditor
+    public class NetworkEditor
     {
-        public static void InitializeStaticValue(INeuralNetwork network, double biasValue, double weightValue)
+        private NetworkManipulator _manipulator;
+
+        public static NetworkEditor CreateStaticValue(double biasValue, double weightValue)
         {
             var manipulationConfig = NetworkModificationConfiguration.Create()
                 .ConfigureBias(BiasModificationConfiguration.Create()
@@ -32,10 +34,13 @@ namespace BabySteps.NeuralNetworkManipulation
 
             var manipulator = new NetworkManipulator(manipulationConfig);
 
-            manipulator.Manipulate(network);
+            return new NetworkEditor()
+            {
+                _manipulator = manipulator
+            };
         }
 
-        public static void InitializeRandom(INeuralNetwork network, DoubleRange biasRange, DoubleRange weightRange)
+        public static NetworkEditor CreateRandom(DoubleRange biasRange, DoubleRange weightRange)
         {
             var manipulationConfig = NetworkModificationConfiguration.Create()
                 .ConfigureBias(BiasModificationConfiguration.Create()
@@ -54,10 +59,13 @@ namespace BabySteps.NeuralNetworkManipulation
 
             var manipulator = new NetworkManipulator(manipulationConfig);
 
-            manipulator.Manipulate(network);
+            return new NetworkEditor()
+            {
+                _manipulator = manipulator
+            };
         }
 
-        public static void VaryWeights(INeuralNetwork network, DoubleRange varyPercentageRange)
+        public static NetworkEditor CreateVaryWeights(DoubleRange varyPercentageRange)
         {
             var manipulationConfig = NetworkModificationConfiguration.Create()
                 .ConfigureBias(IgnoreBiasModificationConfiguration.Create())
@@ -69,7 +77,15 @@ namespace BabySteps.NeuralNetworkManipulation
 
             var manipulator = new NetworkManipulator(manipulationConfig);
 
-            manipulator.Manipulate(network);
+            return new NetworkEditor()
+            {
+                _manipulator = manipulator
+            };
+        }
+
+        public void Manipulate(INeuralNetwork network)
+        {
+            _manipulator.Manipulate(network);
         }
     }
 }

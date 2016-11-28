@@ -49,7 +49,6 @@
     <Compile Include="ActivationFunctions\NotImplementedActivationFunction.cs" />
     <Compile Include="ActivationFunctions\PositiveNegativeBinaryActivationFunction.cs" />
     <Compile Include="ActivationFunctions\SigmoidActivationFunction.cs" />
-    <Compile Include="ICleanable.cs" />
     <Compile Include="IClonable.cs" />
     <Compile Include="INeuralNetwork.cs" />
     <Compile Include="NetworkTypes\SimpleNeuralNetwork.cs" />
