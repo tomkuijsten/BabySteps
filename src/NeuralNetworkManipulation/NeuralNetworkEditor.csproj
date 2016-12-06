@@ -39,6 +39,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DoubleRange.cs" />
+    <Compile Include="IntRange.cs" />
     <Compile Include="ModificationConfiguration\ActivationFunctionModification\ActivationFunctionModificationConfiguration.cs" />
     <Compile Include="ModificationConfiguration\ActivationFunctionModification\IgnoreActivationFunctionModificationConfiguration.cs" />
     <Compile Include="ModificationConfiguration\ActivationFunctionModification\NoneActivationFunctionModificationGradationFilter.cs" />
@@ -80,6 +81,7 @@
     <Compile Include="ModificationConfiguration\WeightModification\AllWeightModificationGradationFilter.cs" />
     <Compile Include="NetworkEditor.cs" />
     <Compile Include="NetworkManipulator.cs" />
+    <Compile Include="Normalizer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Randomizer.cs" />
   </ItemGroup>

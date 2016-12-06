@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BabySteps.NeuralNetworkManipulation
 {
-    internal static class Randomizer
+    public static class Randomizer
     {
         private static Random _randomizer;
 
@@ -15,7 +15,12 @@ namespace BabySteps.NeuralNetworkManipulation
             _randomizer = new Random();
         }
 
-        internal static double NextInRange(DoubleRange range)
+        public static int NextInRange(IntRange range)
+        {
+            return _randomizer.Next(range.Min, range.Max+1);
+        }
+
+        public static double NextInRange(DoubleRange range)
         {
             var randomized = _randomizer.NextDouble();
             var spectrum = range.Max - range.Min;
@@ -25,7 +30,7 @@ namespace BabySteps.NeuralNetworkManipulation
             return randomWithinRange;
         }
 
-        internal static double Vary(DoubleRange percentageRange, double originalValue)
+        public static double Vary(DoubleRange percentageRange, double originalValue)
         {
             var random = _randomizer.NextDouble();
             var scope = percentageRange.Max - percentageRange.Min;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BabySteps.NeuralNetworkManipulation;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -171,23 +172,20 @@ namespace ConsoleApp1
 
         private static void NormalizeData()
         {
-            var offset1 = IrisData.Select(d => d.Spec1).Min();
-            var max1 = IrisData.Select(d => d.Spec1).Max();
-            Func<double, double> normalize1 = (i) => (i * (1 / max1)) + offset1;
+            var targetRange = new DoubleRange(-10, 10);
 
-            var offset2 = IrisData.Select(d => d.Spec2).Min();
-            var max2 = IrisData.Select(d => d.Spec2).Max();
-            Func<double, double> normalize2 = (i) => (i * (1 / max2)) + offset2;
+            var spec1Normalizer = new Normalizer(IrisData.Select(i => i.Spec1).ToArray(), targetRange);
+            var spec2Normalizer = new Normalizer(IrisData.Select(i => i.Spec2).ToArray(), targetRange);
+            var spec3Normalizer = new Normalizer(IrisData.Select(i => i.Spec3).ToArray(), targetRange);
+            var spec4Normalizer = new Normalizer(IrisData.Select(i => i.Spec4).ToArray(), targetRange);
 
-            var offset3 = IrisData.Select(d => d.Spec3).Min();
-            var max3 = IrisData.Select(d => d.Spec3).Max();
-            Func<double, double> normalize3 = (i) => (i * (1 / max3)) + offset3;
-
-            var offset4 = IrisData.Select(d => d.Spec4).Min();
-            var max4 = IrisData.Select(d => d.Spec4).Max();
-            Func<double, double> normalize4 = (i) => (i * (1 / max4)) + offset4;
-
-            IrisDataNormalized = IrisData.Select(d => new Iris(normalize1(d.Spec1), normalize2(d.Spec2), normalize3(d.Spec3), normalize4(d.Spec4), d.Type)).ToArray();
+            IrisDataNormalized = IrisData.Select(d => 
+                new Iris(
+                    spec1Normalizer.Normalize(d.Spec1),
+                    spec2Normalizer.Normalize(d.Spec2),
+                    spec3Normalizer.Normalize(d.Spec3),
+                    spec4Normalizer.Normalize(d.Spec4), 
+                    d.Type)).ToArray();
         }
     }
 
