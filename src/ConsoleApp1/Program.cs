@@ -28,7 +28,7 @@ namespace ConsoleApp1
 
             var best20 = CalculateResult(networks);
 
-            Console.ReadKey();
+            //Console.ReadKey();
 
             var varyWeightsEditor = NetworkEditor.CreateVaryWeights(new DoubleRange(0.8, 1.2));
             while (true)
@@ -53,18 +53,18 @@ namespace ConsoleApp1
 
                 best20 = CalculateResult(bestNetworks);
                 
-                Console.ReadKey();
+                //Console.ReadKey();
             }
         }
 
         private static Dictionary<INeuralNetwork, List<Iris>> CalculateResult(Dictionary<INeuralNetwork, List<Iris>> networks)
         {
-            foreach (var network in networks)
+            foreach (var network in networks.AsParallel())
             {
                 double[] output = null;
                 double[] fitness = null;
                 double[] normalizedOutput = null;
-                foreach (var iris in IrisDataSet.IrisDataNormalized)
+                foreach (var iris in IrisDataSet.IrisDataNormalized.AsParallel())
                 {
                     output = network.Key.CalculateNeuralNetwork(iris.Input);
 
@@ -79,7 +79,7 @@ namespace ConsoleApp1
                     }
                 }
 
-                Console.WriteLine($"{string.Join("|", output)} => {string.Join("|", normalizedOutput)} => {string.Join("|", fitness)}");
+                //Console.WriteLine($"{string.Join("|", output)} => {string.Join("|", normalizedOutput)} => {string.Join("|", fitness)}");
             }
 
             _generation++;
@@ -91,6 +91,7 @@ namespace ConsoleApp1
             foreach (var n in best20)
             {
                 Console.WriteLine($"Network (gen {n.Key.Generation}) has {n.Value.Count} correct answers");
+                n.Key.Generation++;
                 n.Value.Clear();
             }
             Console.WriteLine("===========================================");

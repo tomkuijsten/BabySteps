@@ -16,6 +16,13 @@ namespace BabySteps.NeuralNetworkManipulation.ModificationConfiguration
 
         public IWeightModificationConfiguration WeightModificationConfiguration { get; private set; }
 
+        private NetworkModificationConfiguration()
+        {
+            ActivationFunctionModificationConfiguration = IgnoreActivationFunctionModificationConfiguration.Create();
+            BiasModificationConfiguration = IgnoreBiasModificationConfiguration.Create();
+            WeightModificationConfiguration = IgnoreWeightModificationConfiguration.Create();
+        }
+
         public static NetworkModificationConfiguration Create()
         {
             return new NetworkModificationConfiguration();

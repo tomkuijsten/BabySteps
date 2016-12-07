@@ -146,6 +146,8 @@ namespace BabySteps.NeuralNetwork.NetworkTypes
                 targetNeurons.ElementAt(i).ActivationFunction = sourceNeurons.ElementAt(i).ActivationFunction;
             }
 
+            simpleNetwork.Generation = Generation;
+
             return simpleNetwork;
         }
     }

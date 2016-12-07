@@ -49,6 +49,8 @@
     <Compile Include="ModificationConfiguration\ActivationFunctionModification\IActivationFunctionModificationGradationFilter.cs" />
     <Compile Include="ModificationConfiguration\ActivationFunctionModification\IActivationFunctionModifier.cs" />
     <Compile Include="ModificationConfiguration\ActivationFunctionModification\IActivationFunctionModificationTarget.cs" />
+    <Compile Include="ModificationConfiguration\ActivationFunctionModification\RandomWithinNewCategoryActivationFunctionModifier.cs" />
+    <Compile Include="ModificationConfiguration\ActivationFunctionModification\RandomWithinExistingCategoryActivationFunctionModifier.cs" />
     <Compile Include="ModificationConfiguration\ActivationFunctionModification\RandomActivationFunctionModifier.cs" />
     <Compile Include="ModificationConfiguration\BiasModification\AllBiasModificationGradationFilter.cs" />
     <Compile Include="ModificationConfiguration\BiasModification\AllBiasModificationTarget.cs" />

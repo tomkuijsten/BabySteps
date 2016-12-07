@@ -1,4 +1,5 @@
 ﻿using BabySteps.NeuralNetwork;
+using BabySteps.NeuralNetwork.ActivationFunctions;
 using BabySteps.NeuralNetworkManipulation.ModificationConfiguration;
 using BabySteps.NeuralNetworkManipulation.ModificationConfiguration.ActivationFunctionModification;
 using BabySteps.NeuralNetworkManipulation.ModificationConfiguration.BiasModification;
@@ -14,6 +15,11 @@ namespace BabySteps.NeuralNetworkManipulation
     public class NetworkEditor
     {
         private NetworkManipulator _manipulator;
+
+        public NetworkEditor(NetworkManipulator manipulator)
+        {
+            _manipulator = manipulator;
+        }
 
         public static NetworkEditor CreateStaticValue(double biasValue, double weightValue)
         {
@@ -34,10 +40,7 @@ namespace BabySteps.NeuralNetworkManipulation
 
             var manipulator = new NetworkManipulator(manipulationConfig);
 
-            return new NetworkEditor()
-            {
-                _manipulator = manipulator
-            };
+            return new NetworkEditor(manipulator);
         }
 
         public static NetworkEditor CreateRandom(DoubleRange biasRange, DoubleRange weightRange)
@@ -59,17 +62,12 @@ namespace BabySteps.NeuralNetworkManipulation
 
             var manipulator = new NetworkManipulator(manipulationConfig);
 
-            return new NetworkEditor()
-            {
-                _manipulator = manipulator
-            };
+            return new NetworkEditor(manipulator);
         }
 
         public static NetworkEditor CreateVaryWeights(DoubleRange varyPercentageRange)
         {
             var manipulationConfig = NetworkModificationConfiguration.Create()
-                .ConfigureBias(IgnoreBiasModificationConfiguration.Create())
-                .ConfigureActivationFunction(IgnoreActivationFunctionModificationConfiguration.Create())
                 .ConfigureWeight(WeightModificationConfiguration.Create()
                     .ConfigureTarget(AllWeightModificationTarget.Create())
                     .ConfigureGradationFilter(AllWeightModificationGradationFilter.Create())
@@ -77,10 +75,7 @@ namespace BabySteps.NeuralNetworkManipulation
 
             var manipulator = new NetworkManipulator(manipulationConfig);
 
-            return new NetworkEditor()
-            {
-                _manipulator = manipulator
-            };
+            return new NetworkEditor(manipulator);
         }
 
         public void Manipulate(INeuralNetwork network)

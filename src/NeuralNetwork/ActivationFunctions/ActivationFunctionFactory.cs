@@ -54,9 +54,31 @@ namespace BabySteps.NeuralNetwork.ActivationFunctions
 
         public static IActivationFunction CreateRandom()
         {
-            var randomIndex = _randomizer.Next(0, _allActivationFunctions.Count() - 1);
+            var randomIndex = _randomizer.Next(0, _allActivationFunctions.Count());
 
             return _allActivationFunctions.ElementAt(randomIndex);
+        }
+
+        public static IActivationFunction CreateRandomWithinExistingCategory(IActivationFunction existingFunction)
+        {
+            return CreateRandomWithinNewCategory(existingFunction.Category);
+        }
+
+        public static IActivationFunction CreateRandomWithinNewCategory(ActivationFunctionCategory newCategory)
+        {
+            var nrOfFunctions = _activationFunctionsByCategory[newCategory].Count();
+            if(nrOfFunctions == 0)
+            {
+                throw new ArgumentException($"Category {newCategory} doesn't have any registered activation functions", nameof(newCategory));
+            }
+
+            if (nrOfFunctions == 1)
+            {
+                return _activationFunctionsByCategory[newCategory].Single();
+            }
+
+            var randomIndex = _randomizer.Next(0, nrOfFunctions);
+            return _activationFunctionsByCategory[newCategory].ElementAt(randomIndex);
         }
     }
 }
