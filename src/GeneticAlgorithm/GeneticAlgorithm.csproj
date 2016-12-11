@@ -38,8 +38,20 @@
     <!-- A reference to the entire .NET Framework is automatically included -->
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="IGeneticSwarm.cs" />
+    <Compile Include="NetworkData.cs" />
+    <Compile Include="SimpleAlgorithmSwarm.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NeuralNetworkManipulation\NeuralNetworkEditor.csproj">
+      <Project>{74358058-4fca-44ce-96e0-12fe67cc7550}</Project>
+      <Name>NeuralNetworkEditor</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NeuralNetwork\NeuralNetwork.csproj">
+      <Project>{0955c4f3-2760-4b21-a67c-ab451b823b0e}</Project>
+      <Name>NeuralNetwork</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
 </Project>

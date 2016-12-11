@@ -9,97 +9,145 @@ using System.Text;
 using System.Threading.Tasks;
 using BabySteps.NeuralNetwork.NetworkTypes;
 using BabySteps.NeuralNetworkManipulation;
+using BabySteps.GeneticAlgorithm;
 
 namespace ConsoleApp1
 {
     class Program
     {
-        private static int _generation = 0;
         static void Main(string[] args)
         {
-            Dictionary<INeuralNetwork, List<Iris>> networks = new Dictionary<INeuralNetwork, List<Iris>>();
-            var editor = NetworkEditor.CreateRandom(new DoubleRange(-5, 5), new DoubleRange(-5, 5));
-            for (int i = 0; i < 1000; i++)
+            var simpleGeneticAlgorithm = new SimpleAlgorithmSwarm(4, 3, 200, CalculateIrisFitness);
+
+            string input = null;
+            INetworkData solution = null;
+            while (input != "c")
             {
-                var nn = SimpleNeuralNetworkFactory.Create(4, 5, 3);
-                editor.Manipulate(nn);
-                networks.Add(nn, new List<Iris>());
-            }
-
-            var best20 = CalculateResult(networks);
-
-            //Console.ReadKey();
-
-            var varyWeightsEditor = NetworkEditor.CreateVaryWeights(new DoubleRange(0.8, 1.2));
-            while (true)
-            {
-                var bestNetworks = new Dictionary<INeuralNetwork, List<Iris>>(best20);
-                foreach (var bestNetwork in bestNetworks.ToArray())
-                {
-                    for (int i = 0; i < 100; i++)
-                    {
-                        INeuralNetwork newNetwork = bestNetwork.Key.Clone();
-                        varyWeightsEditor.Manipulate(newNetwork);
-                        bestNetworks.Add(newNetwork, new List<Iris>()); 
-                    }
-                }
-
-                for (int i = 0; i < 500; i++)
-                {
-                    var nn = SimpleNeuralNetworkFactory.Create(4, Randomizer.NextInRange(new IntRange(2, 10)), 3);
-                    editor.Manipulate(nn);
-                    bestNetworks.Add(nn, new List<Iris>());
-                }
-
-                best20 = CalculateResult(bestNetworks);
-                
-                //Console.ReadKey();
-            }
-        }
-
-        private static Dictionary<INeuralNetwork, List<Iris>> CalculateResult(Dictionary<INeuralNetwork, List<Iris>> networks)
-        {
-            foreach (var network in networks.AsParallel())
-            {
-                double[] output = null;
-                double[] fitness = null;
-                double[] normalizedOutput = null;
                 foreach (var iris in IrisDataSet.IrisDataNormalized.AsParallel())
                 {
-                    output = network.Key.CalculateNeuralNetwork(iris.Input);
-
-                    normalizedOutput = NormalizedOutput(output);
-                    fitness = CalculateFitness(normalizedOutput);
-
-                    IrisType iType = GetIrisType(fitness);
-
-                    if (iType == iris.Type)
-                    {
-                        network.Value.Add(iris);
-                    }
+                    simpleGeneticAlgorithm.Feed(iris.Input);
                 }
 
-                //Console.WriteLine($"{string.Join("|", output)} => {string.Join("|", normalizedOutput)} => {string.Join("|", fitness)}");
+                solution = simpleGeneticAlgorithm.GetWinner();
+
+                simpleGeneticAlgorithm.Evolve(); 
+
+                input = Console.ReadLine();
             }
 
-            _generation++;
 
-            Console.WriteLine("===========================================");
-            Console.WriteLine($"======== SCORE FOR GENERATION {_generation} ==========");
-            Console.WriteLine("===========================================");
-            var best20 = networks.OrderByDescending(n => n.Value.Count).Take(20).ToArray();
-            foreach (var n in best20)
+            while(true)
             {
-                Console.WriteLine($"Network (gen {n.Key.Generation}) has {n.Value.Count} correct answers");
-                n.Key.Generation++;
-                n.Value.Clear();
+                string irisInput = Console.ReadLine();
+                double[] convertedInput = irisInput.Split(',').Select(v => double.Parse(v.Replace('.', ','))).ToArray();
+                solution.Network.CalculateNeuralNetwork(convertedInput);
+
+                var output = solution.Network.Output.Select(o => o.Value).ToArray();
+                Console.WriteLine(TranslateToIrisType(output));
             }
-            Console.WriteLine("===========================================");
-            Console.WriteLine("");
-
-
-            return best20.ToDictionary(kv => kv.Key, kv => kv.Value);
         }
+
+        private static double CalculateIrisFitness(double[] input, double[] output)
+        {
+            IrisType iType = TranslateToIrisType(output);
+
+            var expectedResult = IrisDataSet.IrisDataNormalized.First(n => n.Input.SequenceEqual(input)).Type;
+            return expectedResult == iType ? 1 : 0;
+        }
+
+        private static IrisType TranslateToIrisType(double[] output)
+        {
+            var normalizedOutput = NormalizedOutput(output);
+            var fitness = CalculateResult(normalizedOutput);
+            IrisType iType = GetIrisType(fitness);
+            return iType;
+        }
+
+        //    private static int _generation = 0;
+        //    static void Main(string[] args)
+        //    {
+        //        Dictionary<INeuralNetwork, List<Iris>> networks = new Dictionary<INeuralNetwork, List<Iris>>();
+        //        var editor = NetworkEditor.CreateRandom(new DoubleRange(-5, 5), new DoubleRange(-5, 5));
+        //        for (int i = 0; i < 1000; i++)
+        //        {
+        //            var nn = SimpleNeuralNetworkFactory.Create(4, 5, 3);
+        //            editor.Manipulate(nn);
+        //            networks.Add(nn, new List<Iris>());
+        //        }
+
+        //        var best20 = CalculateResult(networks);
+
+        //        //Console.ReadKey();
+
+        //        var varyWeightsEditor = NetworkEditor.CreateVaryWeights(new DoubleRange(0.8, 1.2));
+        //        while (true)
+        //        {
+        //            var bestNetworks = new Dictionary<INeuralNetwork, List<Iris>>(best20);
+        //            foreach (var bestNetwork in bestNetworks.ToArray())
+        //            {
+        //                for (int i = 0; i < 100; i++)
+        //                {
+        //                    INeuralNetwork newNetwork = bestNetwork.Key.Clone();
+        //                    varyWeightsEditor.Manipulate(newNetwork);
+        //                    bestNetworks.Add(newNetwork, new List<Iris>()); 
+        //                }
+        //            }
+
+        //            for (int i = 0; i < 500; i++)
+        //            {
+        //                var nn = SimpleNeuralNetworkFactory.Create(4, Randomizer.NextInRange(new IntRange(2, 10)), 3);
+        //                editor.Manipulate(nn);
+        //                bestNetworks.Add(nn, new List<Iris>());
+        //            }
+
+        //            best20 = CalculateResult(bestNetworks);
+
+        //            //Console.ReadKey();
+        //        }
+        //    }
+
+        //    private static Dictionary<INeuralNetwork, List<Iris>> CalculateResult(Dictionary<INeuralNetwork, List<Iris>> networks)
+        //    {
+        //        foreach (var network in networks.AsParallel())
+        //        {
+        //            double[] output = null;
+        //            double[] fitness = null;
+        //            double[] normalizedOutput = null;
+        //            foreach (var iris in IrisDataSet.IrisDataNormalized.AsParallel())
+        //            {
+        //                output = network.Key.CalculateNeuralNetwork(iris.Input);
+
+        //                normalizedOutput = NormalizedOutput(output);
+        //                fitness = CalculateFitness(normalizedOutput);
+
+        //                IrisType iType = GetIrisType(fitness);
+
+        //                if (iType == iris.Type)
+        //                {
+        //                    network.Value.Add(iris);
+        //                }
+        //            }
+
+        //            //Console.WriteLine($"{string.Join("|", output)} => {string.Join("|", normalizedOutput)} => {string.Join("|", fitness)}");
+        //        }
+
+        //        _generation++;
+
+        //        Console.WriteLine("===========================================");
+        //        Console.WriteLine($"======== SCORE FOR GENERATION {_generation} ==========");
+        //        Console.WriteLine("===========================================");
+        //        var best20 = networks.OrderByDescending(n => n.Value.Count).Take(20).ToArray();
+        //        foreach (var n in best20)
+        //        {
+        //            Console.WriteLine($"Network has {n.Value.Count} correct answers");
+        //            n.Value.Clear();
+        //        }
+        //        Console.WriteLine("===========================================");
+        //        Console.WriteLine("");
+
+
+        //        return best20.ToDictionary(kv => kv.Key, kv => kv.Value);
+        //    }
 
         private static IrisType GetIrisType(IEnumerable<double> normalizedOutput)
         {
@@ -126,9 +174,10 @@ namespace ConsoleApp1
             return Normalizer.NormalizeAll(output, new DoubleRange(0, 1));
         }
 
-        private static double[] CalculateFitness(double[] normalizedOutput)
+        private static double[] CalculateResult(double[] normalizedOutput)
         {
             return normalizedOutput.Select(n => n > 0.8 ? 1d : 0d).ToArray();
         }
+        //}
     }
 }

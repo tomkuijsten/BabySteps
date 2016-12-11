@@ -50,6 +50,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\GeneticAlgorithm\GeneticAlgorithm.csproj">
+      <Project>{2358fdae-4b41-482e-8b5e-e4f45bb950a6}</Project>
+      <Name>GeneticAlgorithm</Name>
+    </ProjectReference>
     <ProjectReference Include="..\NeuralNetworkManipulation\NeuralNetworkEditor.csproj">
       <Project>{74358058-4fca-44ce-96e0-12fe67cc7550}</Project>
       <Name>NeuralNetworkEditor</Name>

@@ -10,7 +10,6 @@ namespace BabySteps.NeuralNetwork
 {
     public interface INeuralNetwork
     {
-        int Generation { get; set; }
         HashSet<Neuron> Neurons { get; }
         HashSet<ISynapse> Synapses { get; }
         HashSet<InputNeuron> Inputs { get; }

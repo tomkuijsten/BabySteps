@@ -16,5 +16,10 @@ namespace BabySteps.NeuralNetworkManipulation
             Min = min;
             Max = max;
         }
+
+        public override string ToString()
+        {
+            return $"{Min} to {Max}";
+        }
     }
 }
