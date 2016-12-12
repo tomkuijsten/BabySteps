@@ -39,7 +39,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IGeneticSwarm.cs" />
-    <Compile Include="NetworkData.cs" />
+    <Compile Include="NeuralNetworkMetadata.cs" />
     <Compile Include="SimpleAlgorithmSwarm.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

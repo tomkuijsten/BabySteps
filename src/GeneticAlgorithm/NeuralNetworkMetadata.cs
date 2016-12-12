@@ -7,7 +7,7 @@ using BabySteps.NeuralNetwork;
 
 namespace BabySteps.GeneticAlgorithm
 {
-    internal class NetworkData : INetworkData
+    internal class NeuralNetworkMetadata : INeuralNetworkMetadata
     {
         private List<FeedResult> _feedResults;
 
@@ -15,7 +15,7 @@ namespace BabySteps.GeneticAlgorithm
         public int Generation { get; private set; }
         public INeuralNetwork Network { get; }
 
-        public NetworkData(INeuralNetwork neuralNetwork, int generation)
+        public NeuralNetworkMetadata(INeuralNetwork neuralNetwork, int generation)
         {
             _feedResults = new List<FeedResult>();
             Network = neuralNetwork;
@@ -26,7 +26,7 @@ namespace BabySteps.GeneticAlgorithm
         {
             get
             {
-                return FeedResults.Average(r => r.Fitness);
+                return FeedResults.Sum(r => r.Fitness);
             }
         }
 
@@ -37,6 +37,7 @@ namespace BabySteps.GeneticAlgorithm
 
         public void Age()
         {
+            _feedResults.Clear();
             Generation++;
         }
 

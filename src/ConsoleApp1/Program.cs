@@ -19,7 +19,7 @@ namespace ConsoleApp1
         {
             var simpleGeneticAlgorithm = new SimpleAlgorithmSwarm(4, 3, 200, CalculateIrisFitness);
 
-            INetworkData solution = null;
+            INeuralNetworkMetadata solution = null;
             for (int i = 0; i < 30; i++)
             {
                 foreach (var iris in IrisDataSet.IrisDataNormalized.AsParallel())

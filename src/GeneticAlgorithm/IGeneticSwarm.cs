@@ -21,7 +21,7 @@ namespace BabySteps.GeneticAlgorithm
         }
     }
 
-    public interface INetworkData
+    public interface INeuralNetworkMetadata
     {
         int Generation { get; }
         INeuralNetwork Network { get; }
@@ -34,12 +34,12 @@ namespace BabySteps.GeneticAlgorithm
 
     public interface IGeneticSwarm
     {
-        IEnumerable<INetworkData> Swarm { get; }
+        IEnumerable<INeuralNetworkMetadata> Swarm { get; }
 
         void Feed(double[] input);
 
         void Evolve();
 
-        INetworkData GetWinner();
+        INeuralNetworkMetadata GetWinner();
     }
 }

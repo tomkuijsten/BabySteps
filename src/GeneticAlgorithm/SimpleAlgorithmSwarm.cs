@@ -24,14 +24,14 @@ namespace BabySteps.GeneticAlgorithm
         private readonly int _nrOfOutputs;
         private readonly int _nrOfHidden;
         private readonly int _maxNrOfNetworks;
-        private readonly List<INetworkData> _swarm;
+        private readonly List<INeuralNetworkMetadata> _swarm;
         private readonly IOCalculation _fitnessFunction;
 
-        public IEnumerable<INetworkData> Swarm => _swarm;
+        public IEnumerable<INeuralNetworkMetadata> Swarm => _swarm;
 
         public SimpleAlgorithmSwarm(int numberOfInputs, int numberOfOutputs, int maxNumberOfNetworks, IOCalculation fitnessFunction)
         {
-            _swarm = new List<INetworkData>();
+            _swarm = new List<INeuralNetworkMetadata>();
             _nrOfInputs = numberOfInputs;
             _nrOfOutputs = numberOfOutputs;
             // Just some weird calculation to determine hidden nodes, could be random sometime
@@ -43,7 +43,7 @@ namespace BabySteps.GeneticAlgorithm
             _swarm.AddRange(newGeneration);
         }
 
-        private IEnumerable<INetworkData> GenerateNewGeneration(int maxNumberOfNetworks)
+        private IEnumerable<INeuralNetworkMetadata> GenerateNewGeneration(int maxNumberOfNetworks)
         {
             var editor = NetworkEditor.CreateRandom(new DoubleRange(-5, 5), new DoubleRange(-5, 5));
             for (int i = 0; i < maxNumberOfNetworks; i++)
@@ -51,7 +51,7 @@ namespace BabySteps.GeneticAlgorithm
                 var nn = SimpleNeuralNetworkFactory.Create(_nrOfInputs, _nrOfHidden, _nrOfOutputs);
                 editor.Manipulate(nn);
 
-                yield return new NetworkData(nn, 0);
+                yield return new NeuralNetworkMetadata(nn, 0);
             }
         }
 
@@ -65,14 +65,14 @@ namespace BabySteps.GeneticAlgorithm
             }
         }
 
-        public INetworkData GetWinner()
+        public INeuralNetworkMetadata GetWinner()
         {
             return PickTheTopX().First();
         }
 
         public void Evolve()
         {
-            INetworkData[] survivors = PickTheTopX();
+            INeuralNetworkMetadata[] survivors = PickTheTopX();
 
             foreach (var s in survivors)
             {
@@ -97,7 +97,7 @@ namespace BabySteps.GeneticAlgorithm
             _swarm.Clear();
         }
 
-        private IEnumerable<INetworkData> CreateNewSurvivorGeneration(INetworkData[] survivors, int survivorGenerationSize)
+        private IEnumerable<INeuralNetworkMetadata> CreateNewSurvivorGeneration(INeuralNetworkMetadata[] survivors, int survivorGenerationSize)
         {
             var nrOfSurvivors = survivors.Count();
             int nrOfVariationsPerSurvivor = survivorGenerationSize / nrOfSurvivors;
@@ -111,12 +111,12 @@ namespace BabySteps.GeneticAlgorithm
                     var nn = survivor.Network.Clone();
                     varyWeightsEditor.Manipulate(nn);
 
-                    yield return new NetworkData(nn, survivor.Generation);
+                    yield return new NeuralNetworkMetadata(nn, survivor.Generation);
                 }
             }
         }
 
-        private void EvolveNetworks(INetworkData[] survivers)
+        private void EvolveNetworks(INeuralNetworkMetadata[] survivers)
         {
             foreach (var survivor in survivers)
             {
@@ -124,7 +124,7 @@ namespace BabySteps.GeneticAlgorithm
             }
         }
 
-        private INetworkData[] PickTheTopX()
+        private INeuralNetworkMetadata[] PickTheTopX()
         {
             int swarmSize = Swarm.Count();
             int nrOfSurvivors = (int)(swarmSize * SURVIVORS_SIZE);
