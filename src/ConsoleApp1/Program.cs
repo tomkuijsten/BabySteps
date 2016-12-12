@@ -19,9 +19,8 @@ namespace ConsoleApp1
         {
             var simpleGeneticAlgorithm = new SimpleAlgorithmSwarm(4, 3, 200, CalculateIrisFitness);
 
-            string input = null;
             INetworkData solution = null;
-            while (input != "c")
+            for (int i = 0; i < 30; i++)
             {
                 foreach (var iris in IrisDataSet.IrisDataNormalized.AsParallel())
                 {
@@ -30,21 +29,24 @@ namespace ConsoleApp1
 
                 solution = simpleGeneticAlgorithm.GetWinner();
 
-                simpleGeneticAlgorithm.Evolve(); 
-
-                input = Console.ReadLine();
+                simpleGeneticAlgorithm.Evolve();
             }
 
-
-            while(true)
+            int correctCount = 0;
+            foreach (var item in IrisDataSet.IrisDataNormalized)
             {
-                string irisInput = Console.ReadLine();
-                double[] convertedInput = irisInput.Split(',').Select(v => double.Parse(v.Replace('.', ','))).ToArray();
-                solution.Network.CalculateNeuralNetwork(convertedInput);
-
+                solution.Network.CalculateNeuralNetwork(item.Input);
                 var output = solution.Network.Output.Select(o => o.Value).ToArray();
-                Console.WriteLine(TranslateToIrisType(output));
+                var foundType = TranslateToIrisType(output);
+                var correct = item.Type == foundType;
+                if (correct) correctCount++;
+                Console.WriteLine($"Found type {foundType} which is {correct}");
             }
+
+            Console.WriteLine($"{correctCount}/150");
+
+
+            Console.ReadLine();
         }
 
         private static double CalculateIrisFitness(double[] input, double[] output)
